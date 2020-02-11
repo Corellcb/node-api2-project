@@ -1,9 +1,13 @@
 const express = require('express');
+
+const dbRouter = require('./data/db-Router');
+
 const server = express();
 
-const db = require('./data/db');
+
 
 server.use(express.json());
+server.use('/api/posts', dbRouter);
 
 server.get('/', (req, res) => {
     res.send(`
@@ -15,4 +19,4 @@ server.get('/', (req, res) => {
 const port = 5000;
 server.listen(port, () => {
     console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
-})
+});
